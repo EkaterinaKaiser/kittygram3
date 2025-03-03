@@ -1,0 +1,38 @@
+version: '3'
+
+services:
+  postgres:
+    image: postgres:13
+    env_file: .env
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+
+  backend:
+    image: ${DOCKER_USERNAME}/kittygram_backend
+    env_file: .env
+    depends_on:
+      - postgres
+    volumes:
+      - static:/static/
+      - media:/app/media
+
+  frontend:
+    image: ${DOCKER_USERNAME}/kittygram_frontend
+    volumes:
+      - static:/static/
+
+  gateway:
+    image: ${DOCKER_USERNAME}/kittygram_gateway
+    ports:
+      - 9000:80
+    volumes:
+      - static:/static/
+      - media:/app/media
+    depends_on:
+      - backend
+      - frontend
+
+volumes:
+  pg_data:
+  static:
+  media: 
