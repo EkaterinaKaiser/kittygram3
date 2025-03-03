@@ -10,5 +10,3 @@ RUN npm run build
 
 FROM nginx:1.22.1
 COPY --from=builder /app/build /usr/share/nginx/html/
-
-CMD ["npx", "-y", "http-server", "-p", "8000", "/app/build"]
