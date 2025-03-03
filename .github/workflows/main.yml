@@ -103,11 +103,11 @@ jobs:
       
       - name: Create .env file
         run: |
-          echo "POSTGRES_DB=${{ secrets.POSTGRES_DB }}" >> .env
-          echo "POSTGRES_USER=${{ secrets.POSTGRES_USER }}" >> .env
-          echo "POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }}" >> .env
-          echo "DB_HOST=${{ secrets.DB_HOST }}" >> .env
-          echo "DB_PORT=${{ secrets.DB_PORT }}" >> .env
+          echo "POSTGRES_DB=kittygram" >> .env
+          echo "POSTGRES_USER=kittygram_user" >> .env
+          echo "POSTGRES_PASSWORD=kittygram_password" >> .env
+          echo "DB_HOST=postgres" >> .env
+          echo "DB_PORT=5432" >> .env
           echo "SECRET_KEY=${{ secrets.SECRET_KEY }}" >> .env
           echo "DEBUG=${{ secrets.DEBUG }}" >> .env
           echo "ALLOWED_HOSTS=${{ secrets.ALLOWED_HOSTS }}" >> .env
@@ -120,6 +120,7 @@ jobs:
           docker compose -f docker-compose.production.yml pull
           docker compose -f docker-compose.production.yml down
           docker compose -f docker-compose.production.yml up -d
+          sleep 10  # Даем время на запуск PostgreSQL
           docker compose -f docker-compose.production.yml exec -T backend python manage.py migrate
           docker compose -f docker-compose.production.yml exec -T backend python manage.py collectstatic --no-input
 
