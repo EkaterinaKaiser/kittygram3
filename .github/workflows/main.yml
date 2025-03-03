@@ -110,7 +110,7 @@ jobs:
           echo "DB_PORT=5432" >> .env
           echo "SECRET_KEY=${{ secrets.SECRET_KEY }}" >> .env
           echo "DEBUG=${{ secrets.DEBUG }}" >> .env
-          echo "ALLOWED_HOSTS=kittygram2.hopto.org,127.0.0.1,localhost" >> .env
+          echo "ALLOWED_HOSTS=kittygram2.hopto.org,85.143.145.4,127.0.0.1,localhost" >> .env
           echo "DOCKER_USERNAME=${{ secrets.DOCKER_USERNAME }}" >> .env
 
       - name: Deploy with docker compose
