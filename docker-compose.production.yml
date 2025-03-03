@@ -19,14 +19,14 @@ services:
   frontend:
     image: ${DOCKER_USERNAME}/kittygram_frontend
     volumes:
-      - static:/static/
+      - static:/usr/share/nginx/html/
 
   gateway:
     image: ${DOCKER_USERNAME}/kittygram_gateway
     ports:
       - 80:80
     volumes:
-      - static:/static/
+      - static:/usr/share/nginx/html/
       - media:/app/media
     depends_on:
       - backend
