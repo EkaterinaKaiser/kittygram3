@@ -19,9 +19,6 @@ services:
     build: 
       context: ./frontend/
       dockerfile: Dockerfile
-    volumes:
-      - static:/static/static/
-      - frontend_build:/app/build
 
   gateway:
     image: ${DOCKER_USERNAME}/kittygram_gateway
@@ -31,7 +28,6 @@ services:
     volumes:
       - static:/static/static/
       - media:/app/media
-      - frontend_build:/usr/share/nginx/html
     depends_on:
       - backend
       - frontend
