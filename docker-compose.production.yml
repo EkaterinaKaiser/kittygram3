@@ -13,21 +13,20 @@ services:
     depends_on:
       - postgres
     volumes:
-      - static_backend:/static/
+      - static:/static/static/
       - media:/app/media
 
   frontend:
     image: ${DOCKER_USERNAME}/kittygram_frontend
     volumes:
-      - static_frontend:/usr/share/nginx/html/
+      - static:/static/static/
 
   gateway:
     image: ${DOCKER_USERNAME}/kittygram_gateway
     ports:
       - 80:80
     volumes:
-      - static_frontend:/usr/share/nginx/html/
-      - static_backend:/static/backend/
+      - static:/static/static/
       - media:/app/media
     depends_on:
       - backend
@@ -35,6 +34,5 @@ services:
 
 volumes:
   pg_data:
-  static_backend:
-  static_frontend:
+  static:
   media: 
