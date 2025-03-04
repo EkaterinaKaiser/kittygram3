@@ -18,6 +18,7 @@ services:
 
   frontend:
     image: ${DOCKER_USERNAME}/kittygram_frontend
+    build: ./frontend/
     volumes:
       - static:/static/static/
 
