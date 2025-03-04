@@ -27,7 +27,7 @@ services:
     image: ${DOCKER_USERNAME}/kittygram_gateway
     build: ./nginx/
     ports:
-      - "8080:80"
+      - "0.0.0.0:8080:80"
     volumes:
       - static:/static/static/
       - media:/app/media
