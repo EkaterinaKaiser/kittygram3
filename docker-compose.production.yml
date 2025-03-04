@@ -24,6 +24,7 @@ services:
 
   gateway:
     image: ${DOCKER_USERNAME}/kittygram_gateway
+    build: ./nginx/
     ports:
       - 80:80
     volumes:
