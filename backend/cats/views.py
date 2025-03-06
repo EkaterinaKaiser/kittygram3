@@ -11,6 +11,11 @@ class CatViewSet(viewsets.ModelViewSet):
     serializer_class = CatSerializer
     pagination_class = PageNumberPagination 
 
+    def get_serializer_context(self):
+        context = super().get_serializer_context()
+        context['request'] = self.request
+        return context
+
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user) 
 

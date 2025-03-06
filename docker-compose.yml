@@ -14,12 +14,12 @@ services:
       - postgres
     volumes:
       - static:/static/
-      - media:/media/
+      - media:/app/media/
 
   frontend:
     build: ./frontend/
     volumes:
-      - static:/static/
+      - frontend_build:/usr/share/nginx/html/
 
   gateway:
     build: ./nginx/
@@ -28,6 +28,7 @@ services:
     volumes:
       - static:/static/
       - media:/media/
+      - frontend_build:/usr/share/nginx/html/
     depends_on:
       - backend
       - frontend
@@ -35,4 +36,5 @@ services:
 volumes:
   pg_data:
   static:
-  media: 
+  media:
+  frontend_build: 
