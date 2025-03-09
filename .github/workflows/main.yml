@@ -78,21 +78,21 @@ jobs:
         with:
           context: ./backend/
           push: true
-          tags: ${{ secrets.DOCKER_USERNAME }}/kittygram_backend:latest
+          tags: ${{ secrets.DOCKER_USERNAME }}/kittygram_backend3:latest
           
       - name: Push frontend to Docker Hub
         uses: docker/build-push-action@v4
         with:
           context: ./frontend/
           push: true
-          tags: ${{ secrets.DOCKER_USERNAME }}/kittygram_frontend:latest
+          tags: ${{ secrets.DOCKER_USERNAME }}/kittygram_frontend3:latest
           
       - name: Push gateway to Docker Hub
         uses: docker/build-push-action@v4
         with:
           context: ./nginx/
           push: true
-          tags: ${{ secrets.DOCKER_USERNAME }}/kittygram_gateway:latest
+          tags: ${{ secrets.DOCKER_USERNAME }}/kittygram_gateway3:latest
 
   deploy:
     runs-on: ubuntu-latest
@@ -109,8 +109,8 @@ jobs:
           echo "DB_HOST=postgres" >> .env
           echo "DB_PORT=5432" >> .env
           echo "SECRET_KEY=${{ secrets.SECRET_KEY }}" >> .env
-          echo "DEBUG=${{ secrets.DEBUG }}" >> .env
-          echo "ALLOWED_HOSTS=kittygram2.hopto.org,192.168.0.109,127.0.0.1,localhost" >> .env
+          echo "DEBUG=False" >> .env
+          echo "ALLOWED_HOSTS=192.168.0.103,127.0.0.1,localhost" >> .env
           echo "DOCKER_USERNAME=${{ secrets.DOCKER_USERNAME }}" >> .env
 
       - name: Deploy with docker compose
@@ -134,7 +134,7 @@ jobs:
         to: ${{ secrets.TELEGRAM_TO }}
         token: ${{ secrets.TELEGRAM_TOKEN }}
         message: |
-          Деплой успешно выполнен по адресу http://192.168.0.109:8080 ! 🚀
+          Деплой успешно выполнен по адресу http://192.168.0.103:8080 ! 🚀
           
           Автор: ${{ github.actor }}
           
