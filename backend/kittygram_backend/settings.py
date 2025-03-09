@@ -7,7 +7,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 
 DEBUG = os.getenv('DEBUG', '').lower() == 'true'
 
-ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', 'kittygram2.hopto.org,85.143.145.4,127.0.0.1,localhost').split(',')
+ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '192.168.0.103,127.0.0.1,localhost').split(',')
 
 CSRF_TRUSTED_ORIGINS = ['http://localhost:9000']
 CSRF_COOKIE_SECURE = False
